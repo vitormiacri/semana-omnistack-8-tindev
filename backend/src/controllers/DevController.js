@@ -9,7 +9,7 @@ module.exports = {
     const userExists = await Dev.findOne({ user: username });
 
     if (userExists) {
-      return res.json({ user: userExists, message: "User already exists" });
+      return res.json({ user: userExists });
     }
 
     try {
@@ -25,7 +25,7 @@ module.exports = {
         bio,
         avatar
       });
-      return res.json(dev);
+      return res.json({ user: dev });
     } catch (error) {
       const { data, status } = error.response;
       return res.status(404).json({ status: status, error: data.message });
